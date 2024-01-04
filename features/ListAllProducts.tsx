@@ -6,8 +6,9 @@ import { useEffect } from "react";
 import { shallow } from "zustand/shallow";
 
 const ListAllProducts = () => {
-  const { products, loading, getAllProducts } = useProducts(
+  const { products, loading, getAllProducts, filters } = useProducts(
     (state) => ({
+      filters: state.filters,
       products: state.products,
       loading: state.loading,
       getAllProducts: state.getAllProducts,
@@ -16,9 +17,8 @@ const ListAllProducts = () => {
   );
 
   useEffect(() => {
-    getAllProducts();
-  }, [getAllProducts]);
-
+    getAllProducts(filters);
+  }, [getAllProducts, filters]);
 
   return (
     <>

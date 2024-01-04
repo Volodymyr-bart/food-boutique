@@ -19,6 +19,7 @@ const Hero = () => {
           height={350}
           priority
           className="mt-10"
+          style={{ width: "100%", height: "auto" }}
         />
         <Image
           src="/hero/label.png"

@@ -1,26 +1,112 @@
-import { getAllProducts, getProductsBySearch } from "@/services/getProducts";
-import { create } from "zustand";
+import {
+  getAllProducts,
+  getProductCategories,
+  getProductsByDiscount,
+  getProductsByPopularity,
+} from "@/services/getProducts";
+import { shallow } from "zustand/shallow";
+import { createWithEqualityFn } from "zustand/traditional";
 type useProducts = {
+  productCategories: string[];
   products: any[];
+  popularityProducts: any[];
+  discountProducts: any[];
   loading: boolean;
   totalPages: number;
   page: number;
-  getAllProducts: () => Promise<void>;
-  getProductsBySearch: (value: string) => Promise<void>;
+  filters: {
+    keyword: string;
+    category: string;
+    byABC: boolean;
+    byPrice: boolean;
+    byPopularity: boolean;
+    page: number;
+    limit: number;
+  };
+  getAllProducts: (params: {
+    keyword?: string;
+    category?: string;
+    byABC?: boolean;
+    byPrice?: boolean;
+    byPopularity?: boolean;
+    page?: number;
+    limit?: number;
+  }) => Promise<void>;
+  getProductCategories: () => Promise<void>;
+
+  getProductsByPopularity: () => Promise<void>;
+  getProductsByDiscount: () => Promise<void>;
+  setFilters: (newFilters: Partial<useProducts["filters"]>) => void;
 };
-export const useProducts = create<useProducts>()((set) => ({
-  products: [],
-  loading: false,
-  totalPages: 0,
-  page: 0,
-  getAllProducts: async () => {
-    set({ loading: true });
-    const { results, page, totalPages } = await getAllProducts();
-    set({ products: results, loading: false, page, totalPages });
-  },
-  getProductsBySearch: async (value: string) => {
-    set({ loading: true });
-    const products = await getProductsBySearch(value);
-    set({ products, loading: false });
-  },
-}));
+export const useProducts = createWithEqualityFn<useProducts>()(
+  (set) => ({
+    productCategories: [],
+    products: [],
+    popularityProducts: [],
+    discountProducts: [],
+    loading: false,
+    totalPages: 0,
+    page: 0,
+    filters: {
+      keyword: "",
+      category: "",
+      byABC: true,
+      byPrice: true,
+      byPopularity: true,
+      page: 1,
+      limit: 9,
+    },
+    getAllProducts: async ({
+      keyword = "",
+      category = "",
+      byABC = true,
+      byPrice = true,
+      byPopularity = true,
+      page = 1,
+      limit = 9,
+    }) => {
+      set({ loading: true });
+      const res = await getAllProducts({
+        keyword,
+        category,
+        byABC,
+        byPrice,
+        byPopularity,
+        page,
+        limit,
+      });
+      set({
+        products: res.results,
+        loading: false,
+        page: res.page,
+        totalPages: res.totalPages,
+      });
+    },
+    getProductsByPopularity: async () => {
+      set({ loading: true });
+      const res = await getProductsByPopularity();
+      set({
+        popularityProducts: res,
+        loading: false,
+      });
+    },
+    getProductsByDiscount: async () => {
+      set({ loading: true });
+      const res = await getProductsByDiscount();
+      set({
+        discountProducts: res,
+        loading: false,
+      });
+    },
+    getProductCategories: async () => {
+      const res = await getProductCategories();
+      set({
+        productCategories: res,
+      });
+    },
+
+    setFilters: (newFilters) =>
+      set((state) => ({ filters: { ...state.filters, ...newFilters } })),
+  }),
+  shallow
+);
