@@ -1,9 +1,20 @@
 "use client";
 import { useProducts } from "@/store";
 import Image from "next/image";
-import { ChangeEvent, useEffect } from "react";
-
+import { ChangeEvent, useEffect, useState } from "react";
+type FilterDataType = {
+  keyword: string;
+  category: string;
+  byABC: boolean;
+  byPrice: boolean;
+};
 const FilterBar = () => {
+  // const [filtersData, setFiltersData] = useState<FilterDataType>({
+  //   keyword: "",
+  //   category: "",
+  //   byABC: false,
+  //   byPrice: false,
+  // });
   const { filters, setFilters, productCategories, getProductCategories } =
     useProducts((state) => ({
       filters: state.filters,
@@ -11,24 +22,16 @@ const FilterBar = () => {
       setFilters: state.setFilters,
       getProductCategories: state.getProductCategories,
     }));
-  const handleSetFilter = (e: ChangeEvent<HTMLInputElement>) => {
+
+  const handleSetFilter = (
+    e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = e.target;
     setFilters({ [name]: value });
   };
-
   useEffect(() => {
     getProductCategories();
   }, [getProductCategories]);
-
-  // const convertCategories = (productCategories: string[]) => {
-  //   if (!productCategories.length) return [];
-  //   const res = productCategories.reduce((acc, el) => {
-  //     const obj = { value: el, label: el };
-  //     acc.push(obj);
-  //     return acc;
-  //   }, [] as { value: string; label: string }[]);
-  //   return res;
-  // };
 
   return (
     <div className="flex gap-2">
@@ -53,6 +56,7 @@ const FilterBar = () => {
         name="category"
         id="category"
         className="w-[190px] rounded-30 flex px-4 py-5 border bg-secondaryWhite"
+        onChange={handleSetFilter}
       >
         <option value="">--</option>
         {productCategories.map((el) => (
@@ -62,12 +66,33 @@ const FilterBar = () => {
         ))}
       </select>
       <select
-        name="sort"
-        id="sort"
-        className="w-[190px] rounded-30 flex px-4 py-5 border bg-secondaryWhite"
+        onChange={handleSetFilter}
+        name="byABC"
+        id="byABC"
+        className="w-[90px] rounded-30 flex px-4 py-5 border bg-secondaryWhite"
       >
-        <option value="A-Z">A-Z</option>
-        <option value="Z-A">Z-A</option>
+        <option value="true">A-Z</option>
+        <option value="false">Z-A</option>
+      </select>
+      <select
+        defaultValue={filters.byPrice.toString()}
+        onChange={handleSetFilter}
+        name="byPrice"
+        id="byPrice"
+        className="w-[120px] rounded-30 flex px-4 py-5 border bg-secondaryWhite"
+      >
+        <option value="true">To hight</option>
+        <option value="false">To down</option>
+      </select>
+      <select
+        defaultValue={filters.limit}
+        onChange={handleSetFilter}
+        name="limit"
+        id="limit"
+        className="w-[90px] rounded-30 flex px-4 py-5 border bg-secondaryWhite"
+      >
+        <option value="9">9</option>
+        <option value="15">15</option>
       </select>
     </div>
   );

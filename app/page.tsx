@@ -2,9 +2,12 @@ import AsideProducts from "@/features/AsideProducts";
 import FilterBar from "@/features/FilterBar";
 import Hero from "@/features/Hero";
 import ListAllProducts from "@/features/ListAllProducts";
-import Image from "next/image";
+import Pagination from "@/shared/Pagination/ui/Pagination";
 
 export default function Home() {
+  const changePage = (page: number) => {
+    console.log(page);
+  };
   return (
     <main className="flex flex-col items-center">
       <Hero />
@@ -14,7 +17,6 @@ export default function Home() {
           <ListAllProducts />
           <AsideProducts />
         </section>
-        Pagination
       </div>
     </main>
   );

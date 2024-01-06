@@ -38,7 +38,7 @@ const AsideProducts = () => {
       <div className="flex flex-col gap-5">
         <h3 className="text-2xl leading-tight">Popular products</h3>
         <ul className="flex flex-col gap-3">
-          {popularityProducts.map((product: any) => (
+          {popularityProducts.slice(0, 4).map((product: any) => (
             <PopularProduct key={product._id} product={product} />
           ))}
         </ul>
@@ -46,7 +46,7 @@ const AsideProducts = () => {
       <div className="flex flex-col gap-5">
         <h3 className="text-2xl leading-tight">Discount products</h3>
         <ul className="flex flex-col gap-3">
-          {discountproducts.map((product: any) => (
+          {discountproducts.slice(0, 2).map((product: any) => (
             <DiscountProduct key={product._id} product={product} />
           ))}
         </ul>

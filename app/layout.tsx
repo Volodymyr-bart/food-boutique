@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import TheHeader from "@/widgets/TheHeader";
 import TheFooter from "@/widgets/TheFooter";
+import Container from "@/shared/Container/ui/Container";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,8 +20,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <TheHeader />
-        <div className="mx-auto">{children}</div>
+        <Container>
+          <TheHeader />
+          <div className="mx-auto">{children}</div>
+        </Container>
         <TheFooter />
       </body>
     </html>
