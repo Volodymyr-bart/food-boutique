@@ -28,6 +28,7 @@ const config: Config = {
         primaryBlack: "#010101",
         primaryGreen: "#6D8434",
         secondaryGreen: "#586F1F",
+        primaryGrey: "#A3A3A3",
       },
       borderRadius: {
         "30": "30px",

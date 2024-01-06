@@ -1,5 +1,5 @@
-"use client";
 import { useProducts } from "@/store";
+import Image from "next/image";
 
 const Pagination = () => {
   const { totalPages, page, changePage } = useProducts((state) => ({
@@ -38,13 +38,20 @@ const Pagination = () => {
       <ul className="flex justify-center gap-5 list-none">
         {page !== 1 && (
           <button
-            className={`w-10 h-10 flex justify-center items-center rounded-full bg-primaryGreen text-primaryWhite
+            className={`w-10 h-10 flex justify-center items-center rounded-full bg-secondaryWhite 
             `}
             onClick={() => {
               changePage(page - 1);
             }}
           >
-            Prev
+            <Image
+              src="/icons/arrow-left.png"
+              alt="Logo"
+              className=""
+              width={24}
+              height={24}
+              priority
+            />
           </button>
         )}
 
@@ -54,7 +61,7 @@ const Pagination = () => {
             ${
               number === page
                 ? "bg-primaryGreen text-primaryBlack"
-                : "bg-primaryGreen text-primaryWhite"
+                : "text-primaryGrey"
             }`}
             key={number}
           >
@@ -70,13 +77,20 @@ const Pagination = () => {
 
         {page !== totalPages && (
           <button
-            className={`w-10 h-10 flex justify-center items-center rounded-full bg-primaryGreen text-primaryWhite
+            className={`w-10 h-10 flex justify-center items-center rounded-full bg-secondaryWhite 
             `}
             onClick={() => {
               changePage(page + 1);
             }}
           >
-            Next
+            <Image
+              src="/icons/arrow-left.png"
+              alt="Logo"
+              className="rotate-180 "
+              width={24}
+              height={24}
+              priority
+            />
           </button>
         )}
       </ul>
