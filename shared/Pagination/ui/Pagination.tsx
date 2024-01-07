@@ -60,7 +60,7 @@ const Pagination = () => {
             className={`w-10 h-10 flex justify-center items-center rounded-full 
             ${
               number === page
-                ? "bg-primaryGreen text-primaryBlack"
+                ? "bg-primaryGreen text-secondaryWhite"
                 : "text-primaryGrey"
             }`}
             key={number}

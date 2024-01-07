@@ -1,41 +1,83 @@
 import Image from "next/image";
-type Product = {
-  img: string;
-  name: string;
-  size: string;
-  popularity: string;
-  category: string;
-};
+import { ProductInCart } from "../types/Product";
+import { useCartProducts } from "@/store";
+import { shallow } from "zustand/shallow";
 
 type Props = {
-  product: Product;
+  product: ProductInCart;
 };
 
 const ProductBasket = ({ product }: Props) => {
-  const { img, name, category, size, popularity } = product;
+  const {
+    deleteProductFromCart,
+    incrementQuantityProduct,
+    decrementQuantityProduct,
+  } = useCartProducts(
+    (state) => ({
+      deleteProductFromCart: state.deleteProductFromCart,
+      incrementQuantityProduct: state.incrementQuantityProduct,
+      decrementQuantityProduct: state.decrementQuantityProduct,
+    }),
+    shallow
+  );
+  const { img, name, category, size, price, _id, quantity } = product;
   return (
-    <div className="flex gap-10">
-      <Image
-        src={img}
-        alt={name}
-        className="bg-primaryWhite"
-        priority
-        width={74}
-        height={74}
-      />
-      <div className="flex">
+    <li className="flex gap-10 justify-between border-b-2 border-primaryGrey py-10">
+      <div className="flex bg-secondaryWhite rounded-30 p-2">
+        <Image src={img} alt={name} priority width={74} height={74} />
+      </div>
+      <div className="flex flex-col gap-2">
         <h3>{name}</h3>
-        <span className="general-span-info">
-          Category:<span className="span-info-value">{category}</span>
+        <span className="">
+          Category:<span className="">{category}</span>
         </span>
-        <span className="general-span-info">
-          Size:<span className="span-info-value">{size}</span>
+        <span className="">
+          Size:<span className="">{size}</span>
         </span>
-        <span className="general-span-info">
-          Popularity:<span className="span-info-value">{popularity}</span>
+        <span className="">
+          Price:<span className="">${price}</span>
         </span>
       </div>
-    </div>
+      <div className="flex items-center">
+        <button
+          className="rounded-l-30 pl-4 pr-1.5 py-[7.5px] border-l-2 border-t-2 border-b-2 border-primaryGrey"
+          onClick={() => decrementQuantityProduct(_id)}
+          disabled={quantity === 1}
+        >
+          <Image
+            src="/icons/minus.png"
+            alt="minus"
+            priority
+            width={18}
+            height={18}
+          />
+        </button>
+        <span className="py-1 border-t-2 border-b-2 border-primaryGrey">
+          {quantity}
+        </span>
+        <button
+          className="rounded-r-30 pr-4 pl-1.5 py-[7.5px]  border-t-2 border-b-2 border-r-2 border-primaryGrey"
+          onClick={() => incrementQuantityProduct(_id)}
+        >
+          <Image
+            src="/icons/plus.png"
+            alt="plus"
+            priority
+            width={18}
+            height={18}
+          />
+        </button>
+      </div>
+      <button onClick={() => deleteProductFromCart(_id)}>
+        <Image
+          src="/icons/close.png"
+          alt="close"
+          priority
+          width={18}
+          height={18}
+        />
+      </button>
+    </li>
   );
 };
 
