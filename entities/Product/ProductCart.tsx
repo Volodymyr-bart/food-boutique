@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import Image from "next/image";
 import { Product } from "../types/Product";
@@ -35,29 +34,30 @@ const ProductCart = ({ product }: Props) => {
         <h3 className="text-xl font-medium text-primaryBlack">{name}</h3>
         <div className="flex flex-col gap-2 mt-2.5">
           <div className="flex justify-between">
-            <span className="text-xs">
-              Category:<span className="span-info-value">{category}</span>
-            </span>
-            <span className="text-xs">
-              Size:<span className="span-info-value">{size}</span>
-            </span>
+            <div className="text-xs">
+              <span className="text-primaryGrey">Category: </span>
+              <span className="text-primaryBlack">{category}</span>
+            </div>
+            <div className="text-xs">
+              <span className="text-primaryGrey">Size: </span>
+              <span className="text-primaryBlack">{size}</span>
+            </div>
           </div>
-
-          <span className="text-xs">
-            Popularity:<span className="span-info-value">{popularity}</span>
-          </span>
+          <div>
+            <span className="text-xs text-primaryGrey">Popularity: </span>
+            <span className="text-primaryBlack">{popularity}</span>
+          </div>
         </div>
       </div>
 
       <div className=" w-full flex  justify-between items-end">
-        <span className="general-span-price">&#36;{price}</span>
+        <span className="font-medium text-xl text-primaryBlack ">
+          &#36;{price}
+        </span>
         <button
           type="submit"
           className="w-8 h-8 rounded-30 p-2 bg-primaryGreen"
           onClick={() => {
-            console.log(product);
-            console.log("click");
-
             addProductToCart(product);
           }}
         >

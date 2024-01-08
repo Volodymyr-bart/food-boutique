@@ -11,10 +11,9 @@ const config: Config = {
   ],
   theme: {
     screens: {
-      sm: "480px",
-      md: "768px",
-      lg: "976px",
-      xl: "1440px",
+      mobile: "375px",
+      tablet: "768px",      
+      desktop: "1440px",
     },
     extend: {
       backgroundImage: {

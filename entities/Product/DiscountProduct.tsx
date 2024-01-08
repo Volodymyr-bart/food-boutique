@@ -1,31 +1,57 @@
+import { useCartProducts } from "@/store";
 import Image from "next/image";
+import { shallow } from "zustand/shallow";
 
 const DiscountProduct = ({ product }: any) => {
-  const { img, name, category, size, popularity } = product;
+  const { addProductToCart } = useCartProducts(
+    (state) => ({
+      addProductToCart: state.addProductToCart,
+    }),
+    shallow
+  );
+  const { img, name, price } = product;
   return (
-    <li className="flex gap-2 bg-secondaryWhite rounded-30 p-5 ">
+    <li className="relative flex flex-col gap-2 bg-secondaryWhite rounded-30 p-4">
       <Image
         src={img}
         alt={name}
         className="bg-primaryWhite"
         priority
-        width={74}
-        height={74}
+        width={150}
+        height={150}
       />
-      <div className="flex flex-col">
-        <h3 className="general-card-title">{name}</h3>
-        <div className="flex flex-col general-span-container">
-          <span className="general-span-info">
-            Category:<span className="span-info-value">{category}</span>
+      <div className="w-full flex justify-between items-center">
+        <h3 className="text-xl font-medium text-primaryBlack">{name}</h3>
+
+        <div className="ml-auto flex gap-2 items-center">
+          <span className="font-medium text-xl text-primaryBlack">
+            ${price}
           </span>
-          <span className="general-span-info">
-            Size:<span className="span-info-value">{size}</span>
-          </span>
-          <span className="general-span-info">
-            Popularity:<span className="span-info-value">{popularity}</span>
-          </span>
+          <button
+            type="submit"
+            className="w-8 h-8 rounded-30 p-2 bg-primaryGreen"
+            onClick={() => {
+              addProductToCart(product);
+            }}
+          >
+            <Image
+              src="/basket.png"
+              alt="basket"
+              priority
+              width={18}
+              height={18}
+            />
+          </button>
         </div>
       </div>
+      <Image
+        className="absolute top-3 right-3 w-15 h-15"
+        src="/icons/discount.png"
+        alt="basket"
+        priority
+        width={60}
+        height={60}
+      />
     </li>
   );
 };

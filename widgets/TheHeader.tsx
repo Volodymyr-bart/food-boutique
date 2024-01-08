@@ -10,7 +10,7 @@ const navItems = [
 const TheHeader = () => {
   return (
     <header className="flex py-6">
-      <div className="flex items-center gap-2">
+      <Link href={"/"} className="flex items-center gap-2">
         <div className="flex justify-center items-center  bg-primaryGreen w-8 h-8 rounded-30">
           <Image
             src="/tdesign_cabbage.png"
@@ -22,10 +22,15 @@ const TheHeader = () => {
           />
         </div>
         <b className="text-primaryBlack">Food Boutique</b>
-      </div>
+      </Link>
       <nav className="ml-auto flex gap-6 items-center list-none">
-        <li className="px-7 py-3 bg-primaryGreen rounded-30 text-primaryWhite">
-          <Link href={"/"}>Home</Link>
+        <li>
+          <Link
+            className="px-7 py-3 bg-primaryGreen rounded-30 text-primaryWhite"
+            href={"/"}
+          >
+            Home
+          </Link>
         </li>
         <li>
           <Link href={"/cart"} className="flex items-center gap-3 ">

@@ -1,9 +1,22 @@
+import { useCartProducts } from "@/store";
 import Image from "next/image";
+import { shallow } from "zustand/shallow";
+import { Product } from "../types/Product";
 
-const PopularProduct = ({ product }: any) => {
+type Props = {
+  product: Product;
+};
+
+const PopularProduct = ({ product }: Props) => {
+  const { addProductToCart } = useCartProducts(
+    (state) => ({
+      addProductToCart: state.addProductToCart,
+    }),
+    shallow
+  );
   const { img, name, category, size, popularity } = product;
   return (
-    <li className="flex gap-2 bg-secondaryWhite rounded-30 p-5 ">
+    <li className="w-[275px] flex gap-2 bg-secondaryWhite rounded-30 p-3 relative">
       <Image
         src={img}
         alt={name}
@@ -13,19 +26,31 @@ const PopularProduct = ({ product }: any) => {
         height={74}
       />
       <div className="flex flex-col">
-        <h3 className="general-card-title">{name}</h3>
-        <div className="flex flex-col general-span-container">
-          <span className="general-span-info">
-            Category:<span className="span-info-value">{category}</span>
-          </span>
-          <span className="general-span-info">
-            Size:<span className="span-info-value">{size}</span>
-          </span>
-          <span className="general-span-info">
-            Popularity:<span className="span-info-value">{popularity}</span>
-          </span>
+        <h3 className="text-xl font-medium text-primaryBlack">{name}</h3>
+        <div className="flex flex-col ">
+          <div className="text-xs">
+            <span className="text-primaryGrey">Category: </span>
+            <span className="text-primaryBlack">{category}</span>
+          </div>
+          <div className="text-xs">
+            <span className="text-primaryGrey">Size:</span>
+            <span className="text-primaryBlack">{size}</span>
+          </div>
+          <div className="text-xs">
+            <span className="text-xs text-primaryGrey">Popularity:</span>
+            <span className="text-primaryBlack">{popularity}</span>
+          </div>
         </div>
       </div>
+      <button
+        type="submit"
+        className="absolute top-3 right-3 w-5 h-5 rounded-30 p-1 bg-primaryGreen"
+        onClick={() => {
+          addProductToCart(product);
+        }}
+      >
+        <Image src="/basket.png" alt="basket" priority width={12} height={12} />
+      </button>
     </li>
   );
 };

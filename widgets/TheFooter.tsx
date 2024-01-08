@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const TheFooter = () => {
   return (
-    <footer className="flex flex-col gap-32 bg-primaryGreen w-full xl:px-24">
+    <footer className="flex flex-col gap-32 bg-primaryGreen w-full desktop:px-24">
       <div className="flex gap-4 justify-between mt-10">
         <div className="flex items-center gap-2 ">
           <div className="flex justify-center items-center  bg-primaryGreen w-8 h-8 rounded-30">
