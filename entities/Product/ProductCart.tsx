@@ -34,11 +34,11 @@ const ProductCart = ({ product }: Props) => {
         <h3 className="text-xl font-medium text-primaryBlack">{name}</h3>
         <div className="flex flex-col gap-2 mt-2.5">
           <div className="flex justify-between">
-            <div className="text-xs">
+            <div className="text-xs text-nowrap">
               <span className="text-primaryGrey">Category: </span>
               <span className="text-primaryBlack">{category}</span>
             </div>
-            <div className="text-xs">
+            <div className="text-xs text-nowrap text-end">
               <span className="text-primaryGrey">Size: </span>
               <span className="text-primaryBlack">{size}</span>
             </div>
