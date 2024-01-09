@@ -9,14 +9,20 @@ type Props = {
 };
 
 const ProductCart = ({ product }: Props) => {
-  const { name, category, size, popularity, price, img } = product;
+  const { name, category, size, popularity, price, img, _id } = product;
 
-  const { addProductToCart } = useCartProducts(
+  const { products, addProductToCart, deleteProductFromCart } = useCartProducts(
     (state) => ({
+      products: state.products,
       addProductToCart: state.addProductToCart,
+      deleteProductFromCart: state.deleteProductFromCart,
     }),
     shallow
   );
+  const isAdded = () => {
+    const product = products.find((el) => el._id === _id);
+    return product?._id!!;
+  };
 
   return (
     <li className="h-[363px] flex flex-col  gap-5 bg-secondaryWhite rounded-30 p-5">
@@ -54,21 +60,38 @@ const ProductCart = ({ product }: Props) => {
         <span className="font-medium text-xl text-primaryBlack ">
           &#36;{price}
         </span>
-        <button
-          type="submit"
-          className="w-8 h-8 rounded-30 p-2 bg-primaryGreen"
-          onClick={() => {
-            addProductToCart(product);
-          }}
-        >
-          <Image
-            src="/basket.png"
-            alt="basket"
-            priority
-            width={18}
-            height={18}
-          />
-        </button>
+
+        {isAdded() ? (
+          <button
+            type="submit"
+            className="w-8 h-8 rounded-30 p-2 bg-primaryGreen"
+            onClick={() => deleteProductFromCart(product._id)}
+          >
+            <Image
+              src="/icons/check.png"
+              alt="check"
+              priority
+              width={18}
+              height={18}
+            />
+          </button>
+        ) : (
+          <button
+            type="submit"
+            className="w-8 h-8 rounded-30 p-2 bg-primaryGreen"
+            onClick={() => {
+              addProductToCart(product);
+            }}
+          >
+            <Image
+              src="/basket.png"
+              alt="basket"
+              priority
+              width={18}
+              height={18}
+            />
+          </button>
+        )}
       </div>
     </li>
   );

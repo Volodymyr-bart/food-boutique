@@ -1,15 +1,26 @@
 import { useCartProducts } from "@/store";
 import Image from "next/image";
 import { shallow } from "zustand/shallow";
+import { Product } from "../types/Product";
+type Props = {
+  product: Product;
+};
 
-const DiscountProduct = ({ product }: any) => {
-  const { addProductToCart } = useCartProducts(
+const DiscountProduct = ({ product }: Props) => {
+  const { img, name, price, _id } = product;
+  const { products, addProductToCart, deleteProductFromCart } = useCartProducts(
     (state) => ({
+      products: state.products,
       addProductToCart: state.addProductToCart,
+      deleteProductFromCart: state.deleteProductFromCart,
     }),
     shallow
   );
-  const { img, name, price } = product;
+  const isAdded = () => {
+    const product = products.find((el) => el._id === _id);
+    return product?._id!!;
+  };
+
   return (
     <li className="relative flex flex-col gap-2 bg-secondaryWhite rounded-30 p-4">
       <Image
@@ -27,21 +38,37 @@ const DiscountProduct = ({ product }: any) => {
           <span className="font-medium text-xl text-primaryBlack">
             ${price}
           </span>
-          <button
-            type="submit"
-            className="w-8 h-8 rounded-30 p-2 bg-primaryGreen"
-            onClick={() => {
-              addProductToCart(product);
-            }}
-          >
-            <Image
-              src="/basket.png"
-              alt="basket"
-              priority
-              width={18}
-              height={18}
-            />
-          </button>
+          {isAdded() ? (
+            <button
+              type="submit"
+              className="w-8 h-8 rounded-30 p-2 bg-primaryGreen"
+              onClick={() => deleteProductFromCart(product._id)}
+            >
+              <Image
+                src="/icons/check.png"
+                alt="check"
+                priority
+                width={18}
+                height={18}
+              />
+            </button>
+          ) : (
+            <button
+              type="submit"
+              className="w-8 h-8 rounded-30 p-2 bg-primaryGreen"
+              onClick={() => {
+                addProductToCart(product);
+              }}
+            >
+              <Image
+                src="/basket.png"
+                alt="basket"
+                priority
+                width={18}
+                height={18}
+              />
+            </button>
+          )}
         </div>
       </div>
       <Image

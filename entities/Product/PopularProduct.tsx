@@ -8,13 +8,22 @@ type Props = {
 };
 
 const PopularProduct = ({ product }: Props) => {
-  const { addProductToCart } = useCartProducts(
+  const { img, name, category, size, popularity, _id } = product;
+
+  const { products, addProductToCart, deleteProductFromCart } = useCartProducts(
     (state) => ({
+      products: state.products,
       addProductToCart: state.addProductToCart,
+      deleteProductFromCart: state.deleteProductFromCart,
     }),
     shallow
   );
-  const { img, name, category, size, popularity } = product;
+
+  const isAdded = () => {
+    const product = products.find((el) => el._id === _id);
+    return product?._id!!;
+  };
+
   return (
     <li className="w-[275px] flex gap-2 bg-secondaryWhite rounded-30 p-3 relative">
       <Image
@@ -42,15 +51,37 @@ const PopularProduct = ({ product }: Props) => {
           </div>
         </div>
       </div>
-      <button
-        type="submit"
-        className="absolute top-3 right-3 w-5 h-5 rounded-30 p-1 bg-primaryGreen"
-        onClick={() => {
-          addProductToCart(product);
-        }}
-      >
-        <Image src="/basket.png" alt="basket" priority width={12} height={12} />
-      </button>
+      {isAdded() ? (
+        <button
+          type="submit"
+          className="absolute top-3 right-3 w-5 h-5 rounded-30 p-1 bg-primaryGreen"
+          onClick={() => deleteProductFromCart(product._id)}
+        >
+          <Image
+            src="/icons/check.png"
+            alt="check"
+            priority
+            width={12}
+            height={12}
+          />
+        </button>
+      ) : (
+        <button
+          type="submit"
+          className="absolute top-3 right-3 w-5 h-5 rounded-30 p-1 bg-primaryGreen"
+          onClick={() => {
+            addProductToCart(product);
+          }}
+        >
+          <Image
+            src="/basket.png"
+            alt="basket"
+            priority
+            width={12}
+            height={12}
+          />
+        </button>
+      )}
     </li>
   );
 };
