@@ -12,7 +12,8 @@ type Props = {
 };
 
 const ProductCart = ({ product }: Props) => {
-  const { name, category, size, popularity, price, img, _id } = product;
+  const { name, category, size, popularity, price, img, _id, is10PercentOff } =
+    product;
 
   const { products, addProductToCart, deleteProductFromCart } = useCartProducts(
     (state) => ({
@@ -22,7 +23,7 @@ const ProductCart = ({ product }: Props) => {
     }),
     shallow
   );
-  
+
   const { isModalOpen, openModal } = useThemeStore(
     (state) => ({
       isModalOpen: state.isModalOpen,
@@ -38,7 +39,7 @@ const ProductCart = ({ product }: Props) => {
 
   return (
     <>
-      <li className="h-[363px] flex flex-col  gap-5 bg-secondaryWhite rounded-30 p-5">
+      <li className="relative h-[363px] flex flex-col  gap-5 bg-secondaryWhite rounded-30 p-5">
         <div className="w-full" onClick={() => openModal(product._id)}>
           <Image
             src={img}
@@ -106,6 +107,16 @@ const ProductCart = ({ product }: Props) => {
             </button>
           )}
         </div>
+        {is10PercentOff && (
+          <Image
+            className="absolute top-2 right-2 w-10 h-10"
+            src="/icons/discount.png"
+            alt="discount"
+            priority
+            width={40}
+            height={40}
+          />
+        )}
       </li>
       <Modal>{isModalOpen && <DetailedProduct />}</Modal>
     </>

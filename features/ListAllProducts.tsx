@@ -18,7 +18,10 @@ const ListAllProducts = () => {
   );
 
   useEffect(() => {
-    getAllProducts(filters);
+    const debounce = setTimeout(() => {
+      getAllProducts(filters);
+    }, 500);
+    return () => clearTimeout(debounce);
   }, [getAllProducts, filters]);
 
   return (

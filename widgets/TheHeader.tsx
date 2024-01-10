@@ -1,5 +1,8 @@
+import HeaderInfoCart from "@/features/HeaderInfoCart";
+import { useCartProducts } from "@/store";
 import Image from "next/image";
 import Link from "next/link";
+import { shallow } from "zustand/shallow";
 
 const TheHeader = () => {
   return (
@@ -27,19 +30,7 @@ const TheHeader = () => {
           </Link>
         </li>
         <li>
-          <Link href={"/cart"} className="flex items-center gap-3 ">
-            <div className="flex justify-center items-center  bg-primaryGreen w-9 h-9 rounded-30">
-              <Image
-                src="/basket.png"
-                alt="Logo"
-                className="dark:invert"
-                width={18}
-                height={18}
-                priority
-              />
-            </div>
-            <b className="text-primaryBlack">Cart</b>
-          </Link>
+          <HeaderInfoCart />
         </li>
       </nav>
     </header>

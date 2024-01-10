@@ -2,12 +2,7 @@
 import { useProducts } from "@/store";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
-type FilterDataType = {
-  keyword: string;
-  category: string;
-  byABC: boolean;
-  byPrice: boolean;
-};
+
 const FilterBar = () => {
   const { filters, setFilters, productCategories, getProductCategories } =
     useProducts((state) => ({
@@ -23,6 +18,10 @@ const FilterBar = () => {
     const { name, value } = e.target;
     setFilters({ [name]: value });
   };
+
+  useEffect(() => {
+    getProductCategories();
+  }, [getProductCategories]);
 
   return (
     <div className="flex gap-2">
@@ -72,8 +71,8 @@ const FilterBar = () => {
         id="byPrice"
         className="w-[120px] rounded-30 flex px-4 py-5 border bg-secondaryWhite"
       >
-        <option value="true">To hight</option>
-        <option value="false">To down</option>
+        <option value="true">Low to Hight</option>
+        <option value="false">Hight to Low</option>
       </select>
       <select
         defaultValue={filters.limit}
