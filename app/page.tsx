@@ -1,8 +1,9 @@
 "use client";
-import AsideProducts from "@/features/AsideProducts";
+
 import FilterBar from "@/features/FilterBar";
 import Hero from "@/features/Hero";
 import ListAllProducts from "@/features/ListAllProducts";
+import AsideProducts from "@/widgets/AsideProducts/ui/AsideProducts";
 
 export default function Home() {
   return (

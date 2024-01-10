@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ProductInCart } from "../types/Product";
-import { useCartProducts } from "@/store";
 import { shallow } from "zustand/shallow";
+import { useCartProducts } from "@/store/stateCart";
 
 type Props = {
   product: ProductInCart;
@@ -20,7 +20,7 @@ const ProductBasket = ({ product }: Props) => {
     }),
     shallow
   );
-  const { img, name, category, size, price, _id, quantity } = product;
+  const { img, name, category, size, price, _id, amount } = product;
   return (
     <li className="flex gap-10 justify-between border-b-2 border-primaryGrey py-10">
       <div className="flex bg-secondaryWhite rounded-30 p-2">
@@ -42,7 +42,7 @@ const ProductBasket = ({ product }: Props) => {
         <button
           className="rounded-l-30 pl-4 pr-1.5 py-[7.5px] border-l-2 border-t-2 border-b-2 border-primaryGrey"
           onClick={() => decrementQuantityProduct(_id)}
-          disabled={quantity === 1}
+          disabled={amount === 1}
         >
           <Image
             src="/icons/minus.png"
@@ -53,7 +53,7 @@ const ProductBasket = ({ product }: Props) => {
           />
         </button>
         <span className="py-1 border-t-2 border-b-2 border-primaryGrey">
-          {quantity}
+          {amount}
         </span>
         <button
           className="rounded-r-30 pr-4 pl-1.5 py-[7.5px]  border-t-2 border-b-2 border-r-2 border-primaryGrey"

@@ -1,11 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import { Product } from "../types/Product";
-import { useCartProducts } from "@/store";
 import { shallow } from "zustand/shallow";
 import Modal from "@/shared/Modal/ui/Modal";
 import DetailedProduct from "./DetailedProduct";
 import { useThemeStore } from "@/store/theme";
+import { useCartProducts } from "@/store/stateCart";
 
 type Props = {
   product: Product;

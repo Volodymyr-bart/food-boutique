@@ -7,6 +7,7 @@ import {
 } from "@/services/getProducts";
 import { shallow } from "zustand/shallow";
 import { createWithEqualityFn } from "zustand/traditional";
+
 type useProducts = {
   productCategories: string[];
   products: Product[];
@@ -39,6 +40,7 @@ type useProducts = {
   changePage: (currentPage: number) => Promise<void>;
   setFilters: (newFilters: Partial<useProducts["filters"]>) => void;
 };
+
 export const useProducts = createWithEqualityFn<useProducts>()(
   (set) => ({
     productCategories: [],
@@ -130,68 +132,3 @@ export const useProducts = createWithEqualityFn<useProducts>()(
   }),
   shallow
 );
-
-type useCartProducts = {
-  products: ProductInCart[];
-  addProductToCart: (item: any) => void;
-  clearCart: () => void;
-  deleteProductFromCart: (productId: string) => void;
-  incrementQuantityProduct: (productId: string) => void;
-  decrementQuantityProduct: (productId: string) => void;
-};
-
-export const useCartProducts = createWithEqualityFn<useCartProducts>()(
-  (set) => ({
-    products: [],
-    addProductToCart: (item: Product) => {
-      const currentState = useCartProducts.getState();
-      const existingProduct = currentState.products.find(
-        (product) => product._id === item._id
-      );
-      if (existingProduct) {
-        set((state) => ({
-          products: state.products.map((product) =>
-            product._id === item._id
-              ? { ...product, quantity: product.quantity + 1 }
-              : product
-          ),
-        }));
-      } else {
-        set((state) => ({
-          products: [...state.products, { ...item, quantity: 1 }],
-        }));
-      }
-    },
-    clearCart: () => {
-      set(() => ({
-        products: [],
-      }));
-    },
-    deleteProductFromCart: (productId: string) => {
-      set((state) => ({
-        products: state.products.filter((product) => product._id !== productId),
-      }));
-    },
-    incrementQuantityProduct: (productId: string) => {
-      set((state) => ({
-        products: state.products.map((product) =>
-          product._id === productId
-            ? { ...product, quantity: product.quantity + 1 }
-            : product
-        ),
-      }));
-    },
-    decrementQuantityProduct: (productId: string) => {
-      set((state) => ({
-        products: state.products.map((product) =>
-          product._id === productId
-            ? { ...product, quantity: Math.max(product.quantity - 1, 0) }
-            : product
-        ),
-      }));
-    },
-  }),
-  shallow
-);
-
-

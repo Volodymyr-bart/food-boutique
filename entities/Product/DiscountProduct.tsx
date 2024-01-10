@@ -1,7 +1,7 @@
-import { useCartProducts } from "@/store";
 import Image from "next/image";
 import { shallow } from "zustand/shallow";
 import { Product } from "../types/Product";
+import { useCartProducts } from "@/store/stateCart";
 type Props = {
   product: Product;
 };

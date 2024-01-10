@@ -9,7 +9,7 @@ export type Product = {
   is10PercentOff: boolean;
 };
 export type ProductInCart = Product & {
-  quantity: number;
+  amount: number;
 };
 export type ProductDetail = Product & {
   desc: string;

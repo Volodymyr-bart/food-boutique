@@ -1,20 +1,21 @@
 "use client";
-import ProductBasket from "@/entities/Product/ProductBasket";
-import { useCartProducts } from "@/store";
+import BasketProducts from "@/features/BasketProducts/ui/BasketProducts";
+import EmptyBasket from "@/features/EmptyBasket/ui/EmptyBasket";
+import OrderForm from "@/features/OrderForm/ui/OrderForm";
+import { useCartProducts } from "@/store/stateCart";
 import Image from "next/image";
 import { shallow } from "zustand/shallow";
 
 const Cart = () => {
-  const { products, clearCart } = useCartProducts(
+  const { products } = useCartProducts(
     (state) => ({
       products: state.products,
-      clearCart: state.clearCart,
     }),
     shallow
   );
   const totalPrice = () => {
     const total = products.reduce((acc, el) => {
-      acc += el.price * el.quantity;
+      acc += el.price * el.amount;
       return acc;
     }, 0);
     const roundedTotal = total.toFixed(2);
@@ -32,58 +33,23 @@ const Cart = () => {
       {products.length ? (
         <section className="flex flex-col min-h-full">
           <div className="mx-auto w-full mt-5 flex gap-10">
-            <div>
-              {products.length ? (
-                <button
-                  className="p-4 bg-primaryGreen rounded-30"
-                  onClick={() => clearCart()}
-                >
-                  Delete all <span>X</span>
-                </button>
-              ) : (
-                <></>
-              )}
-              <ul className="my-4 flex flex-col gap-4">
-                {products.map((item) => (
-                  <ProductBasket key={item._id + item.name} product={item} />
-                ))}
-              </ul>
-            </div>
+            <BasketProducts />
             <div>
               <h3 className="text-3xl font-medium text-primaryBlack">
                 YOUR ORDER
               </h3>
               <div className="flex justify-between items-center w-[534px] px-7 py-3.5 bg-primaryGrey">
                 <p className="text-xl font-medium text-primaryBlack">Total</p>
-                {products.length ? (
-                  <p className="text-3xl font-medium text-primaryBlack">
-                    ${totalPrice()}
-                  </p>
-                ) : (
-                  <></>
-                )}
+                <p className="text-3xl font-medium text-primaryBlack">
+                  ${totalPrice()}
+                </p>
               </div>
+              <OrderForm />
             </div>
           </div>
         </section>
       ) : (
-        <section className="flex flex-col items-center my-[150px]">
-          <Image
-            className=" mb-10"
-            src="/icons/shopping-basket.png"
-            alt="shopping-basket"
-            width={164}
-            height={140}
-            priority
-          />
-          <div className="flex flex-col gap-3.5 text-center">
-            <h3>Your basket is empty...</h3>
-            <p>
-              Go to the main page to select your favorite products and add them
-              to the cart.
-            </p>
-          </div>
-        </section>
+        <EmptyBasket />
       )}
     </>
   );

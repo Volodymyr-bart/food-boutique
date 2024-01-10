@@ -1,7 +1,8 @@
 "use client";
 
 import { getProductById } from "@/services/getProducts";
-import { useCartProducts } from "@/store";
+import { useCartProducts } from "@/store/stateCart";
+
 import { useThemeStore } from "@/store/theme";
 import Image from "next/image";
 import { useEffect, useState } from "react";
