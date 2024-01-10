@@ -22,7 +22,11 @@ const TheFooter = () => {
             </b>
           </Link>
           <div className="flex gap-3">
-            <div className="flex w-11 h-11 justify-center items-center border border-primaryGrey rounded-[10px]">
+            <Link
+              href={"https://www.facebook.com/goITclub/"}
+              target="_blank"
+              className="flex w-11 h-11 justify-center items-center border border-primaryGrey rounded-[10px]"
+            >
               <Image
                 src="/icons/social/facebook.png"
                 alt="Logo"
@@ -31,9 +35,12 @@ const TheFooter = () => {
                 height={28}
                 priority
               />
-            </div>
-
-            <div className="flex w-11 h-11 justify-center items-center border border-primaryGrey rounded-[10px]">
+            </Link>
+            <Link
+              href={"https://www.instagram.com/goitclub/"}
+              target="_blank"
+              className="flex w-11 h-11 justify-center items-center border border-primaryGrey rounded-[10px]"
+            >
               <Image
                 src="/icons/social/instagram.png"
                 alt="Logo"
@@ -42,8 +49,12 @@ const TheFooter = () => {
                 height={28}
                 priority
               />
-            </div>
-            <div className="flex w-11 h-11 justify-center items-center border border-primaryGrey rounded-[10px]">
+            </Link>
+            <Link
+              href={"https://www.youtube.com/c/GoIT"}
+              target="_blank"
+              className="flex w-11 h-11 justify-center items-center border border-primaryGrey rounded-[10px]"
+            >
               <Image
                 src="/icons/social/youtube.png"
                 alt="Logo"
@@ -52,7 +63,7 @@ const TheFooter = () => {
                 height={28}
                 priority
               />
-            </div>
+            </Link>
           </div>
         </div>
 

@@ -46,7 +46,7 @@ const PopularProduct = ({ product }: Props) => {
             <span className="text-primaryBlack">{size}</span>
           </div>
           <div className="text-xs">
-            <span className="text-xs text-primaryGrey">Popularity:</span>
+            <span className="text-primaryGrey">Popularity:</span>
             <span className="text-primaryBlack">{popularity}</span>
           </div>
         </div>
