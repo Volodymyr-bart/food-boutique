@@ -9,12 +9,6 @@ type FilterDataType = {
   byPrice: boolean;
 };
 const FilterBar = () => {
-  // const [filtersData, setFiltersData] = useState<FilterDataType>({
-  //   keyword: "",
-  //   category: "",
-  //   byABC: false,
-  //   byPrice: false,
-  // });
   const { filters, setFilters, productCategories, getProductCategories } =
     useProducts((state) => ({
       filters: state.filters,
@@ -29,9 +23,6 @@ const FilterBar = () => {
     const { name, value } = e.target;
     setFilters({ [name]: value });
   };
-  useEffect(() => {
-    getProductCategories();
-  }, [getProductCategories]);
 
   return (
     <div className="flex gap-2">
