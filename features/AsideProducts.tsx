@@ -2,24 +2,18 @@
 
 import DiscountProduct from "@/entities/Product/DiscountProduct";
 import PopularProduct from "@/entities/Product/PopularProduct";
-// import {
-//   getProductsByDiscount,
-//   getProductsByPopularity,
-// } from "@/services/getProducts";
 import { useProducts } from "@/store";
 import { useEffect } from "react";
 import { shallow } from "zustand/shallow";
 
 const AsideProducts = () => {
   const {
-    loading,
     popularityProducts,
     getProductsByPopularity,
     discountproducts,
     getProductsByDiscount,
   } = useProducts(
     (state) => ({
-      loading: state.loading,
       popularityProducts: state.popularityProducts,
       discountproducts: state.discountProducts,
       getProductsByPopularity: state.getProductsByPopularity,
@@ -34,10 +28,10 @@ const AsideProducts = () => {
   }, [getProductsByPopularity, getProductsByDiscount]);
 
   return (
-    <aside className="w-[275px] flex flex-col gap-10">
+    <aside className="mx-auto w-[275px] flex flex-col gap-10">
       <div className="flex flex-col gap-5">
         <h3 className="text-2xl leading-tight">Popular products</h3>
-        <ul className="flex flex-col gap-3">
+        <ul className="grid gap-3 items-center justify-center grid-cols-1">
           {popularityProducts.slice(0, 4).map((product: any) => (
             <PopularProduct key={product._id} product={product} />
           ))}
@@ -45,7 +39,7 @@ const AsideProducts = () => {
       </div>
       <div className="flex flex-col gap-5">
         <h3 className="text-2xl leading-tight">Discount products</h3>
-        <ul className="flex flex-col gap-3">
+        <ul className="grid gap-3 items-center justify-center grid-cols-1 ">
           {discountproducts.slice(0, 2).map((product: any) => (
             <DiscountProduct key={product._id} product={product} />
           ))}

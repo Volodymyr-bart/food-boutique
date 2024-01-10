@@ -3,11 +3,11 @@ import Image from "next/image";
 const Hero = () => {
   return (
     <>
-      <h1 className="text-7xl font-medium mt-12">
+      <h1 className="text-11 leading-12 font-medium mt-12 text-primaryBlack">
         Welcome to the <span className="text-primaryGreen ">Food</span>{" "}
         Boutique!
       </h1>
-      <p className="mt-5">
+      <p className="mt-5 text-primaryBlack text-3.5 leading-4.5">
         With Food Boutique, you&apos;re not just subscribing to food,
         you&apos;re signing up for a fresher, fitter, and happier you.
       </p>
@@ -18,8 +18,7 @@ const Hero = () => {
           width={1024}
           height={350}
           priority
-          className="mt-10"
-          style={{ width: "100%", height: "auto" }}
+          className="mt-10 w-full"
         />
         <Image
           src="/hero/label.png"

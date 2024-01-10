@@ -12,10 +12,28 @@ const config: Config = {
   theme: {
     screens: {
       mobile: "375px",
-      tablet: "768px",      
+      tablet: "768px",
       desktop: "1440px",
     },
     extend: {
+      fontFamily: {
+        sans: ["Neue Montreal", "sans-serif"],
+      },
+      fontSize: {
+        "3": "12px",
+        "3.5": "14px",
+        "4": "14px",
+        "4.5": "18px",
+        "6": "24px",
+        "10": "40px",
+        "11": "44px",
+      },
+      lineHeight: {
+        "3.5": "14px",
+        "4.5": "18px",
+        "11": "44px",
+        "12": "48px",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

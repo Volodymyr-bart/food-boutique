@@ -25,11 +25,11 @@ const ListAllProducts = () => {
   }, [getAllProducts, filters]);
 
   return (
-    <div className="w-[925px] h-full flex flex-col items-center justify-center">
+    <div className="w-full h-full flex flex-col items-center justify-center desktop:w-[925px]">
       {loading ? (
         <div className="">Loading...</div>
       ) : products.length ? (
-        <ul className="w-full grid grid-cols-3 gap-5">
+        <ul className="w-full grid gap-5 mobile:grid-cols-1 tablet:grid-cols-2 desktop:grid-cols-3 items-center justify-center">
           {products.map((product: any) => (
             <ProductCart key={product._id} product={product} />
           ))}

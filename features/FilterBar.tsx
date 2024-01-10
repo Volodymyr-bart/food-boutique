@@ -24,8 +24,8 @@ const FilterBar = () => {
   }, [getProductCategories]);
 
   return (
-    <div className="flex gap-2">
-      <div className="w-[270px] rounded-30 flex px-4 py-5 border bg-secondaryWhite">
+    <div className="flex gap-2 mobile:flex-wrap">
+      <div className="mobile:w-full desktop:w-[270px] rounded-30 flex px-4 py-5 border bg-secondaryWhite">
         <input
           defaultValue={filters.keyword}
           onChange={handleSetFilter}

@@ -35,7 +35,7 @@ const Pagination = () => {
 
   return (
     <div className="mx-auto my-10">
-      <ul className="flex justify-center gap-5 list-none">
+      <ul className="flex flex-wrap justify-center gap-5 list-none">
         {page !== 1 && (
           <button
             className={`w-10 h-10 flex justify-center items-center rounded-full bg-secondaryWhite 

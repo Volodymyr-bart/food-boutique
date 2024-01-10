@@ -17,13 +17,15 @@ const HeaderInfoCart = () => {
         <Image
           src="/basket.png"
           alt="Logo"
-          className="dark:invert"
+          className=""
           width={18}
           height={18}
           priority
         />
       </div>
-      <b className="text-primaryBlack">Cart({products?.length})</b>
+      <b className="text-primaryBlack hidden tablet:block">
+        Cart {products.length ? `(${products.length})` : ""}
+      </b>
     </Link>
   );
 };

@@ -10,7 +10,7 @@ export default function Home() {
       <Hero />
       <div className="mt-20 mx-auto">
         <FilterBar />
-        <section className=" flex mt-[60px] gap-8">
+        <section className="flex mt-[60px] mb-20 gap-8 flex-col desktop:flex-row">
           <ListAllProducts />
           <AsideProducts />
         </section>

@@ -1,8 +1,6 @@
 import HeaderInfoCart from "@/features/HeaderInfoCart";
-import { useCartProducts } from "@/store";
 import Image from "next/image";
 import Link from "next/link";
-import { shallow } from "zustand/shallow";
 
 const TheHeader = () => {
   return (
@@ -18,12 +16,14 @@ const TheHeader = () => {
             priority
           />
         </div>
-        <b className="text-primaryBlack">Food Boutique</b>
+        <b className="text-primaryBlack font-black text-nowrap mobile:text-4.5 mobile:leading-5">
+          Food Boutique
+        </b>
       </Link>
-      <nav className="ml-auto flex gap-6 items-center list-none">
+      <nav className="ml-auto flex gap-6 items-center list-none mobile:gap-1.5">
         <li>
           <Link
-            className="px-7 py-3 bg-primaryGreen rounded-30 text-primaryWhite"
+            className="mobile:px-5 mobile:py-2.5 desktop:px-7 desktop:py-3 bg-primaryGreen rounded-30 text-primaryWhite"
             href={"/"}
           >
             Home

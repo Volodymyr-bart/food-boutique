@@ -4,7 +4,7 @@ type Props = {
   children: ReactNode;
 };
 const Container = ({ children }: Props) => {
-  return <div className="desktop:px-24">{children}</div>;
+  return <div className="px-5 tablet:px-8 desktop:px-24">{children}</div>;
 };
 
 export default Container;
