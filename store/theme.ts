@@ -1,15 +1,19 @@
 import { createWithEqualityFn } from "zustand/traditional";
 
 type useThemeStore = {
-  productId: string | null;
   isModalOpen: boolean;
-  openModal: (productId: string) => void;
+  openModal: () => void;
   closeModal: () => void;
+  productId: string | null;
+  setProductId: (productId: string) => void;
+  clearProductId: () => void;
 };
 
 export const useThemeStore = createWithEqualityFn<useThemeStore>((set) => ({
-  productId: "",
   isModalOpen: false,
-  openModal: (productId) => set({ isModalOpen: true, productId }),
-  closeModal: () => set({ isModalOpen: false, productId: null }),
+  openModal: () => set({ isModalOpen: true }),
+  closeModal: () => set({ isModalOpen: false }),
+  productId: "",
+  setProductId: (productId) => set({productId }),
+  clearProductId: () => set({ productId: null }),
 }));

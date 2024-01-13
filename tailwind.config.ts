@@ -25,6 +25,7 @@ const config: Config = {
         "4": "14px",
         "4.5": "18px",
         "6": "24px",
+        "8": "32px",
         "10": "40px",
         "11": "44px",
       },
@@ -46,6 +47,7 @@ const config: Config = {
         primaryGreen: "#6D8434",
         secondaryGreen: "#586F1F",
         primaryGrey: "#A3A3A3",
+        secondaryBg: "#E2E3D9",
       },
       borderRadius: {
         "30": "30px",

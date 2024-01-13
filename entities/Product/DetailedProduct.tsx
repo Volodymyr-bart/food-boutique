@@ -56,7 +56,7 @@ const DetailedProduct = () => {
   return (
     <>
       <div className="flex flex-col">
-        <div className="flex gap-6">
+        <div className="flex gap-6 h-[212px]">
           <div className="w-[240px] h-[212px] flex items-center justify-center py-6.5 px-10 rounded-[10px] bg-primaryWhite">
             {product.img && (
               <Image
@@ -86,7 +86,7 @@ const DetailedProduct = () => {
                 <span className="text-primaryBlack">{product.popularity}</span>
               </div>
             </div>
-            <p className="mt-6">{product.desc}</p>
+            <p className="mt-6 overflow-y-auto max-h-40">{product.desc}</p>
           </div>
         </div>
         <div className="mt-12 flex justify-between">
@@ -99,7 +99,9 @@ const DetailedProduct = () => {
                 : addProductToCart(product)
             }
           >
-            <span className="text-primaryWhite">{isAdded() ? "Remove from" : "Add to"}</span>
+            <span className="text-primaryWhite">
+              {isAdded() ? "Remove from" : "Add to"}
+            </span>
             <Image
               src="/basket.png"
               alt="basket"

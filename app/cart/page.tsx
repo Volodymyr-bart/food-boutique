@@ -31,14 +31,14 @@ const Cart = () => {
         <p>Cart ({products.length}) </p>
       </div>
       {products.length ? (
-        <section className="flex flex-col min-h-full">
-          <div className="mx-auto w-full mt-5 flex gap-10">
+        <section className="flex flex-col min-h-full mt-3 mb-[100px]">
+          <div className="mx-auto w-full mt-5 grid grid-cols-1 desktop:grid-cols-2 gap-[100px]">
             <BasketProducts />
-            <div>
+            <div className="flex flex-col gap-10">
               <h3 className="text-3xl font-medium text-primaryBlack">
                 YOUR ORDER
               </h3>
-              <div className="flex justify-between items-center w-[534px] px-7 py-3.5 bg-primaryGrey">
+              <div className="flex justify-between items-center tablet:w-[590px]  px-7 py-3.5 bg-secondaryBg rounded-sm">
                 <p className="text-xl font-medium text-primaryBlack">Total</p>
                 <p className="text-3xl font-medium text-primaryBlack">
                   ${totalPrice()}

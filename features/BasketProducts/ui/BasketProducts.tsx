@@ -20,7 +20,7 @@ const BasketProducts = () => {
         >
           Clear
         </button>
-        <ul className="my-4 flex flex-col gap-4">
+        <ul className="my-4 flex flex-col gap-4 overflow-y-auto max-h-[600px]">
           {products.map((item) => (
             <ProductBasket key={item._id + item.name} product={item} />
           ))}

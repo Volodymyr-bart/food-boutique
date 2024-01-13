@@ -22,7 +22,7 @@ const ProductBasket = ({ product }: Props) => {
   );
   const { img, name, category, size, price, _id, amount } = product;
   return (
-    <li className="flex gap-10 justify-between border-b-2 border-primaryGrey py-10">
+    <li className="max-w-[500px] flex gap-10 justify-between border-b-2 border-primaryGrey py-10">
       <div className="flex bg-secondaryWhite rounded-30 p-2">
         <Image src={img} alt={name} priority width={74} height={74} />
       </div>
@@ -38,9 +38,9 @@ const ProductBasket = ({ product }: Props) => {
           Price:<span className="">${price}</span>
         </span>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center justify-center ">
         <button
-          className="rounded-l-30 pl-4 pr-1.5 py-[7.5px] border-l-2 border-t-2 border-b-2 border-primaryGrey"
+          className="h-[34px] rounded-l-30 pl-4 pr-1.5 py-[7.5px] border-l-2 border-t-2 border-b-2 border-primaryGrey"
           onClick={() => decrementQuantityProduct(_id)}
           disabled={amount === 1}
         >
@@ -52,11 +52,11 @@ const ProductBasket = ({ product }: Props) => {
             height={18}
           />
         </button>
-        <span className="py-1 border-t-2 border-b-2 border-primaryGrey">
+        <span className="h-[34px] py-1 border-t-2 border-b-2 border-primaryGrey">
           {amount}
         </span>
         <button
-          className="rounded-r-30 pr-4 pl-1.5 py-[7.5px]  border-t-2 border-b-2 border-r-2 border-primaryGrey"
+          className="h-[34px] rounded-r-30 pr-4 pl-1.5 py-[7.5px]  border-t-2 border-b-2 border-r-2 border-primaryGrey"
           onClick={() => incrementQuantityProduct(_id)}
         >
           <Image

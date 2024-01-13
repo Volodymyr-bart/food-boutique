@@ -24,13 +24,16 @@ const ProductCart = ({ product }: Props) => {
     shallow
   );
 
-  const { isModalOpen, openModal } = useThemeStore(
-    (state) => ({
-      isModalOpen: state.isModalOpen,
-      openModal: state.openModal,
-    }),
-    shallow
-  );
+  const { isModalOpen, openModal, setProductId, clearProductId } =
+    useThemeStore(
+      (state) => ({
+        isModalOpen: state.isModalOpen,
+        openModal: state.openModal,
+        setProductId: state.setProductId,
+        clearProductId: state.clearProductId,
+      }),
+      shallow
+    );
 
   const isAdded = () => {
     const product = products.find((el) => el._id === _id);
@@ -40,7 +43,13 @@ const ProductCart = ({ product }: Props) => {
   return (
     <>
       <li className="relative h-[363px] flex flex-col  gap-5 bg-secondaryWhite rounded-30 p-5">
-        <div className="w-full" onClick={() => openModal(product._id)}>
+        <div
+          className="w-full"
+          onClick={() => {
+            openModal();
+            setProductId(product._id);
+          }}
+        >
           <Image
             src={img}
             alt={name}
@@ -118,7 +127,9 @@ const ProductCart = ({ product }: Props) => {
           />
         )}
       </li>
-      <Modal>{isModalOpen && <DetailedProduct />}</Modal>
+      <Modal onClose={() => clearProductId()}>
+        <DetailedProduct />
+      </Modal>
     </>
   );
 };
