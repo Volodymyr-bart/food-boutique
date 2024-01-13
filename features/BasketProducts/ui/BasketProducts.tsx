@@ -15,7 +15,7 @@ const BasketProducts = () => {
     <>
       <div className="flex flex-col">
         <button
-          className="w-max ml-auto p-4 bg-primaryGreen rounded-30"
+          className="w-max ml-auto p-4 bg-primaryGreen rounded-30 text-primaryWhite"
           onClick={() => clearCart()}
         >
           Clear

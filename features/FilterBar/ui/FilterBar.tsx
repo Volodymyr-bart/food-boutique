@@ -2,6 +2,7 @@
 import { useProducts } from "@/store";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useState } from "react";
+import debounce from "debounce";
 
 const FilterBar = () => {
   const { filters, setFilters, productCategories, getProductCategories } =
@@ -16,7 +17,11 @@ const FilterBar = () => {
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = e.target;
-    setFilters({ [name]: value });
+    const debouncedSetFilters = debounce(
+      () => setFilters({ [name]: value }),
+      500
+    );
+    debouncedSetFilters();
   };
 
   useEffect(() => {

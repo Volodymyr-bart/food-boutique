@@ -1,8 +1,8 @@
 "use client";
 
-import FilterBar from "@/features/FilterBar";
+import FilterBar from "@/features/FilterBar/ui/FilterBar";
 import Hero from "@/features/Hero";
-import ListAllProducts from "@/features/ListAllProducts";
+import ListAllProducts from "@/features/ListAllProducts/ui/ListAllProducts";
 import AsideProducts from "@/widgets/AsideProducts/ui/AsideProducts";
 
 export default function Home() {
