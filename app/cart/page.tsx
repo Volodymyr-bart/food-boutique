@@ -28,7 +28,9 @@ const Cart = () => {
         <div className="flex justify-center items-center  bg-primaryGreen w-9 h-9 rounded-30">
           <Image src="/basket.png" alt="Logo" width={18} height={18} priority />
         </div>
-        <p>Cart ({products.length}) </p>
+        <p className="font-medium text-6 leading-7 text-primaryBlack ">
+          Cart ({products.length})
+        </p>
       </div>
       {products.length ? (
         <section className="flex flex-col min-h-full mt-3 mb-[100px]">

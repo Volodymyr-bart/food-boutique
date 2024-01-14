@@ -6,6 +6,7 @@ type useCartProducts = {
   products: ProductInCart[];
   addProductToCart: (item: Product) => void;
   clearCart: () => void;
+  // hydrate: () => void;
   deleteProductFromCart: (productId: string) => void;
   incrementQuantityProduct: (productId: string) => void;
   decrementQuantityProduct: (productId: string) => void;

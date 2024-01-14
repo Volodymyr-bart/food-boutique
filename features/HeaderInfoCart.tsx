@@ -2,15 +2,24 @@
 import { useCartProducts } from "@/store/stateCart";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 import { shallow } from "zustand/shallow";
 
 const HeaderInfoCart = () => {
-  const { products } = useCartProducts(
+  const { products,
+    // hydrate
+  } = useCartProducts(
     (state) => ({
       products: state.products,
+      // hydrate: state.hydrate,
     }),
     shallow
   );
+
+  useEffect(() => {
+    // hydrate();
+  }, []);
+
   return (
     <Link href={"/cart"} className="flex items-center gap-3 ">
       <div className="flex justify-center items-center  bg-primaryGreen w-9 h-9 rounded-30">

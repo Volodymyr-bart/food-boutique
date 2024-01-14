@@ -29,8 +29,8 @@ const FilterBar = () => {
   }, [getProductCategories]);
 
   return (
-    <div className="flex gap-2 mobile:flex-wrap">
-      <div className="mobile:w-full desktop:w-[270px] rounded-30 flex px-4 py-5 border bg-secondaryWhite">
+    <div className="flex gap-2 mobile:flex-wrap desktop:flex-row">
+      <div className="mobile:w-[270px]  rounded-30 flex px-4 py-5 border bg-secondaryWhite">
         <input
           defaultValue={filters.keyword}
           onChange={handleSetFilter}
@@ -66,6 +66,7 @@ const FilterBar = () => {
         id="byABC"
         className="w-[90px] rounded-30 flex px-4 py-5 border bg-secondaryWhite"
       >
+        <option value="">--</option>
         <option value="true">A-Z</option>
         <option value="false">Z-A</option>
       </select>
@@ -74,7 +75,7 @@ const FilterBar = () => {
         onChange={handleSetFilter}
         name="byPrice"
         id="byPrice"
-        className="w-[120px] rounded-30 flex px-4 py-5 border bg-secondaryWhite"
+        className="w-[150px] rounded-30 flex px-4 py-5 border bg-secondaryWhite"
       >
         <option value="true">Low to Hight</option>
         <option value="false">Hight to Low</option>

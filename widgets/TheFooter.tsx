@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const TheFooter = () => {
   return (
-    <footer className="flex flex-col gap-32 bg-primaryGreen w-full mobile:px-5 desktop:px-24 ">
+    <footer className="mt-auto flex flex-col gap-32 bg-primaryGreen w-full mobile:px-5 desktop:px-24 ">
       <div className="mt-10 mobile:flex flex-col tablet:flex-row desktop:justify-between desktop:gap-4">
         <div className="flex flex-col gap-5">
           <Link className="flex items-center gap-2" href={"/"}>
