@@ -20,14 +20,11 @@ const PopularityProducts = () => {
   }, [getProductsByPopularity]);
 
   return (
-    <div className="flex flex-col gap-5">
-      <h3 className="text-2xl leading-tight">Popular products</h3>
-      <ul className="grid gap-3 items-center justify-center grid-cols-1">
-        {popularityProducts.slice(0, 4).map((product: Product) => (
-          <PopularProduct key={product._id} product={product} />
-        ))}
-      </ul>
-    </div>
+    <ul className="grid gap-3 items-center justify-center grid-cols-1 tablet:grid-cols-2 tablet:items-start desktop:grid-cols-1">
+      {popularityProducts.slice(0, 4).map((product: Product) => (
+        <PopularProduct key={product._id} product={product} />
+      ))}
+    </ul>
   );
 };
 
