@@ -1,10 +1,8 @@
 import { Product, ProductInCart } from "@/entities/types/Product";
-import {
-  getAllProducts,
-  getProductCategories,
-  getProductsByDiscount,
-  getProductsByPopularity,
-} from "@/services/getProducts";
+import { getProductsByDiscount } from "@/features/DiscountProducts/libs/getProductsByPopularity";
+import { getProductsByPopularity } from "@/features/PopularityProducts/services/getProductsByPopularity";
+import { getAllProducts, getProductCategories } from "@/services/getProducts";
+
 import { shallow } from "zustand/shallow";
 import { createWithEqualityFn } from "zustand/traditional";
 

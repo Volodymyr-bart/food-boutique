@@ -29,18 +29,6 @@ export const getProductById = async (id: string) => {
   return response.json();
 };
 
-export const getProductsByDiscount = async () => {
-  const url = `https://food-boutique.b.goit.study/api/products/discount`;
-  const response = await fetch(url);
-  if (!response.ok) throw new Error("Unable to fetch posts.");
-  return response.json();
-};
-export const getProductsByPopularity = async () => {
-  const url = `https://food-boutique.b.goit.study/api/products/popular?limit=5`;
-  const response = await fetch(url);
-  if (!response.ok) throw new Error("Unable to fetch posts.");
-  return response.json();
-};
 export const getProductCategories = async () => {
   const url = `https://food-boutique.b.goit.study/api/products/categories`;
   const response = await fetch(url);
