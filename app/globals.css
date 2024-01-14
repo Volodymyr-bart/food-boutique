@@ -35,3 +35,6 @@ body {
 ::-webkit-scrollbar-corner {
   background-color: #fff;
 }
+h2 {
+  font-size: 28px;
+}

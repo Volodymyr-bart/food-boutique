@@ -32,7 +32,7 @@ const HeaderInfoCart = () => {
           priority
         />
       </div>
-      <b className="text-primaryBlack hidden tablet:block">
+      <b className="text-primaryBlack hidden tablet:block font-black mobile:text-4.5 mobile:leading-5">
         Cart {products.length ? `(${products.length})` : ""}
       </b>
     </Link>
