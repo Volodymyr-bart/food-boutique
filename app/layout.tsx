@@ -4,6 +4,7 @@ import "./globals.css";
 import TheHeader from "@/widgets/TheHeader";
 import TheFooter from "@/widgets/TheFooter";
 import Container from "@/shared/Container/ui/Container";
+import { Providers } from "@/features/Provider/ui/Provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,11 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Container>
-          <TheHeader />
-          <div className="mx-auto">{children}</div>
-        </Container>
-        <TheFooter />
+        <Providers>
+          <Container>
+            <TheHeader />
+            <div className="mx-auto">{children}</div>
+          </Container>
+          <TheFooter />
+        </Providers>
       </body>
     </html>
   );

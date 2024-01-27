@@ -1,3 +1,4 @@
+const URL = process.env.NEXT_PUBLIC_API_URL;
 export const getAllProducts = async ({
   keyword = "",
   category = "",
@@ -16,22 +17,20 @@ export const getAllProducts = async ({
     page: page.toString(),
     limit: limit.toString(),
   });
-  const url = `https://food-boutique.b.goit.study/api/products?${queryParams}`;
-  const response = await fetch(url);
+
+  const response = await fetch(`${URL}/products?${queryParams}`);
   if (!response.ok) throw new Error("Unable to fetch products.");
   return response.json();
 };
 
 export const getProductById = async (id: string) => {
-  const url = `https://food-boutique.b.goit.study/api/products/${id}`;
-  const response = await fetch(url);
+  const response = await fetch(`${URL}/products/${id}`);
   if (!response.ok) throw new Error("Unable to fetch posts.");
   return response.json();
 };
 
 export const getProductCategories = async () => {
-  const url = `https://food-boutique.b.goit.study/api/products/categories`;
-  const response = await fetch(url);
+  const response = await fetch(`${URL}/products/categories`);
   if (!response.ok) throw new Error("Unable to fetch posts.");
   return response.json();
 };

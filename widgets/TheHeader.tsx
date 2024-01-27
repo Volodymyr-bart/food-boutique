@@ -1,3 +1,4 @@
+import AuthRoute from "@/features/AuthRoute/ui/AuthRoute";
 import HeaderInfoCart from "@/features/HeaderInfoCart";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,6 +29,9 @@ const TheHeader = () => {
           >
             Home
           </Link>
+        </li>
+        <li>
+          <AuthRoute />
         </li>
         <li>
           <HeaderInfoCart />

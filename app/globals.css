@@ -35,6 +35,35 @@ body {
 ::-webkit-scrollbar-corner {
   background-color: #fff;
 }
+h1 {
+  font-size: 28px;
+}
 h2 {
   font-size: 28px;
+}
+
+.active {
+  color: var(--color-active);
+  cursor: default;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+form button,
+button {
+  background-color: var(--color-active);
+  cursor: pointer;
+  color: white;
+  border: none;
+}
+
+input[type="search"] {
+  padding: 0.5rem 1rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
 }

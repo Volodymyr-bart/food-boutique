@@ -1,4 +1,5 @@
 "use client";
+require("dotenv").config();
 
 import FilterBar from "@/features/FilterBar/ui/FilterBar";
 import Hero from "@/features/Hero";
