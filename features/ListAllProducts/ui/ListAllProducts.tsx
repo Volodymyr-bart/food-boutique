@@ -39,7 +39,7 @@ const ListAllProducts = () => {
           <p>Nothing was found for the selected filters...</p>
           <p>
             Try adjusting your search parameters or browse our range by other
-            criteria to find the perfect product for you.{" "}
+            criteria to find the perfect product for you.
           </p>
         </div>
       )}

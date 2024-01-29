@@ -1,3 +1,5 @@
+import ArrowBack from "@/shared/Icons/ui/ArrowBack";
+import ArrowNext from "@/shared/Icons/ui/ArrowNext";
 import { useProducts } from "@/store";
 import Image from "next/image";
 
@@ -36,7 +38,7 @@ const Pagination = () => {
   return (
     <div className="mx-auto my-10">
       <ul className="flex flex-wrap justify-center gap-5 list-none">
-        {page !== 1 && (
+        {page !== 1 && page !== 0 && (
           <button
             className={`w-10 h-10 flex justify-center items-center rounded-full bg-secondaryWhite 
             `}
@@ -44,14 +46,7 @@ const Pagination = () => {
               changePage(page - 1);
             }}
           >
-            <Image
-              src="/icons/arrow-left.png"
-              alt="Logo"
-              className=""
-              width={24}
-              height={24}
-              priority
-            />
+            <ArrowBack />
           </button>
         )}
 
@@ -75,7 +70,7 @@ const Pagination = () => {
           </li>
         ))}
 
-        {page !== totalPages && (
+        {totalPages > page && (
           <button
             className={`w-10 h-10 flex justify-center items-center rounded-full bg-secondaryWhite 
             `}
@@ -83,14 +78,7 @@ const Pagination = () => {
               changePage(page + 1);
             }}
           >
-            <Image
-              src="/icons/arrow-left.png"
-              alt="Logo"
-              className="rotate-180 "
-              width={24}
-              height={24}
-              priority
-            />
+            <ArrowNext />
           </button>
         )}
       </ul>
