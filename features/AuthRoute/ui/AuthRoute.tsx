@@ -5,7 +5,6 @@ import Link from "next/link";
 
 const AuthRoute = () => {
   const session = useSession();
-  console.log(session);
 
   return (
     <div className="flex gap-2">
